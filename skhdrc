@@ -1,33 +1,51 @@
 # opens iTerm2
-alt - return : "${HOME}"/.config/yabai/scripts/open_iterm2.sh
+alt - return : "${HOME}"/src/yabai-config/scripts/open_iterm2.sh
 
 # Show system statistics
-fn + lalt - 1 : "${HOME}"/.config/yabai/scripts/show_cpu.sh
-fn + lalt - 2 : "${HOME}"/.config/yabai/scripts/show_mem.sh
-fn + lalt - 3 : "${HOME}"/.config/yabai/scripts/show_bat.sh
-fn + lalt - 4 : "${HOME}"/.config/yabai/scripts/show_disk.sh
-fn + lalt - 5 : "${HOME}"/.config/yabai/scripts/show_song.sh
+#fn + lalt - 1 : "${HOME}"/config/yabai/scripts/show_cpu.sh
+#fn + lalt - 2 : "${HOME}"/config/yabai/scripts/show_mem.sh
+#fn + lalt - 3 : "${HOME}"/config/yabai/scripts/show_bat.sh
+#fn + lalt - 4 : "${HOME}"/config/yabai/scripts/show_disk.sh
+#fn + lalt - 5 : "${HOME}"/config/yabai/scripts/show_song.sh
 
 # Navigation
-alt - h : yabai -m window --focus west
-alt - j : yabai -m window --focus south
-alt - k : yabai -m window --focus north
-alt - l : yabai -m window --focus east
+alt - left  : yabai -m window --focus west
+alt - down  : yabai -m window --focus south
+alt - up    : yabai -m window --focus north
+alt - right : yabai -m window --focus east
+
+# Move workspace
+cmd - left  : yabai -m space --focus prev
+cmd - right : yabai -m space --focus next
+alt - f1 : yabai -m space --focus 1
+alt - f2 : yabai -m space --focus 2
+alt - f3 : yabai -m space --focus 3
+alt - f4 : yabai -m space --focus 4
+alt - f5 : yabai -m space --focus 5
+alt - f6 : yabai -m space --focus 6
+alt - f7 : yabai -m space --focus 7
+alt - f8 : yabai -m space --focus 8
+alt - f9 : yabai -m space --focus 9
 
 # Moving windows
-shift + alt - h : yabai -m window --warp west
-shift + alt - j : yabai -m window --warp south
-shift + alt - k : yabai -m window --warp north
-shift + alt - l : yabai -m window --warp east
+shift + alt - left  : yabai -m window --warp west
+shift + alt - down  : yabai -m window --warp south
+shift + alt - up    : yabai -m window --warp north
+shift + alt - right : yabai -m window --warp east
 
 # Move focus container to workspace
-shift + alt - m : yabai -m window --space last; yabai -m space --focus last
-shift + alt - p : yabai -m window --space prev; yabai -m space --focus prev
-shift + alt - n : yabai -m window --space next; yabai -m space --focus next
-shift + alt - 1 : yabai -m window --space 1; yabai -m space --focus 1
-shift + alt - 2 : yabai -m window --space 2; yabai -m space --focus 2
-shift + alt - 3 : yabai -m window --space 3; yabai -m space --focus 3
-shift + alt - 4 : yabai -m window --space 4; yabai -m space --focus 4
+#shift + alt - m : yabai -m window --space last; yabai -m space --focus last
+shift + cmd - left  : yabai -m window --space prev; yabai -m space --focus prev
+shift + cmd - right : yabai -m window --space next; yabai -m space --focus next
+shift + alt - f1 : yabai -m window --space 1; yabai -m space --focus 1
+shift + alt - f2 : yabai -m window --space 2; yabai -m space --focus 2
+shift + alt - f3 : yabai -m window --space 3; yabai -m space --focus 3
+shift + alt - f4 : yabai -m window --space 4; yabai -m space --focus 4
+shift + alt - f5 : yabai -m window --space 5; yabai -m space --focus 5
+shift + alt - f6 : yabai -m window --space 6; yabai -m space --focus 6
+shift + alt - f7 : yabai -m window --space 7; yabai -m space --focus 7
+shift + alt - f8 : yabai -m window --space 8; yabai -m space --focus 8
+shift + alt - f9 : yabai -m window --space 9; yabai -m space --focus 9
 
 # Resize windows
 lctrl + alt - h : yabai -m window --resize left:-50:0; \
@@ -64,11 +82,12 @@ shift + alt - space : \
     yabai -m window --toggle float; \
     yabai -m window --toggle border
 
-# Restart Yabai
+# Restart Yabai and skhd
 shift + lctrl + alt - r : \
     /usr/bin/env osascript <<< \
         "display notification \"Restarting Yabai\" with title \"Yabai\""; \
-    launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+    launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"; \
+    skhd --reload;
 
 # Make window native fullscreen
 alt - f         : yabai -m window --toggle zoom-fullscreen
