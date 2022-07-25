@@ -73,5 +73,8 @@ yabai -m signal --add event=window_destroyed action="${ubersicht_spaces_refresh_
 yabai -m signal --add event=window_focused action="${ubersicht_spaces_refresh_command}"
 yabai -m signal --add event=window_title_changed action="${ubersicht_spaces_refresh_command}"
 
+# Clean up empty spaces with no windows on them.
+yabai -m signal --add event=space_changed action="sh ~/src/yabai-config/scripts/clean_empty_spaces.sh"
+
 set +x
 printf "yabai: configuration loaded...\\n"
